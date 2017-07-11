@@ -84,7 +84,7 @@ $(document).ready(function(){
   }
 
   function createTweetELement(userObj){
-    console.log("I'm in");
+
     $('.container').append(
 
       $('<section/>').addClass("existing-tweet")
@@ -126,4 +126,21 @@ $(document).ready(function(){
   };
 
   renderTweets(data);
+
+
+  $(function() {
+    $('.new-tweet').on('click', 'button', function () {
+      console.log('tweet tweet!')
+      console.log($('.new-tweet').find('textarea').val());
+      $.ajax({
+        url: '/tweets/',
+        type: 'POST',
+        data: $('.new-tweet').find('textarea').serialize(),
+        success: function (morePostsHtml) {
+          console.log('success');
+
+        }
+      });
+    });
+  });
 });
