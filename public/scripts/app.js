@@ -108,19 +108,19 @@ $(document).ready(function(){
 
   };
 
-  function renderTweets(tweet){
-    for (i in tweet){
-      createTweetELement(tweet[i]);
+  function buildAllTweets(database){
+    for (i in database){
+      createTweetELement(database[i]);
     };
   };
 
-//get tweets from db and render
+//get all tweets from db and render
   function renderDatabase(){
     $.ajax({
       url: '/tweets/',
       method: 'GET',
-      success: function (TTR) {
-        renderTweets(TTR);
+      success: function (database) {
+        buildAllTweets(database);
         $('.existing-tweet').find('.timestamp-footer img').hide();
           $('.existing-tweet').on('mouseenter',function(){
             $(this).addClass("hover");
@@ -134,6 +134,24 @@ $(document).ready(function(){
     });
   };
 
+  function renderLatestTweet(){
+    $.ajax({
+      url: '/tweets/',
+      method: 'GET',
+      success: function (database) {
+        createTweetELement(database[database.length-1]);
+        $('.existing-tweet').find('.timestamp-footer img').hide();
+          $('.existing-tweet').on('mouseenter',function(){
+            $(this).addClass("hover");
+            $(this).find('.timestamp-footer img').show();
+          });
+          $('.existing-tweet').on('mouseleave',function(){
+            $(this).removeClass("hover");
+            $(this).find('.timestamp-footer img').hide();
+          });
+      }
+    });
+  };
 
 
 //submit tweets to db
@@ -151,7 +169,7 @@ $(document).ready(function(){
         type: 'POST',
         data: $('.new-tweet').find('textarea').serialize(),
         success: function (morePostsHtml) {
-        renderDatabase();
+        renderLatestTweet();
         }
       });
     };
