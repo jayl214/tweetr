@@ -25,3 +25,20 @@
   line-height: 80px;
   font-size: 200%;
 }
+
+#nav-bar .compose-toggle{
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e7fdff;
+  padding: 1.25em .5em 1.25em .5em;
+  height: 60px;
+  float: right;
+  text-align: center;
+  color: #00a087;
+}
+
+#nav-bar .compose-toggle.hover{
+  background-color: white;
+  color: black;
+}

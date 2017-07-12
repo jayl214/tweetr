@@ -121,6 +121,7 @@ $(document).ready(function(){
       method: 'GET',
       success: function (TTR) {
         renderTweets(TTR);
+        $('.existing-tweet').find('.timestamp-footer img').hide();
           $('.existing-tweet').on('mouseenter',function(){
             $(this).addClass("hover");
             $(this).find('.timestamp-footer img').show();
@@ -156,7 +157,6 @@ $(document).ready(function(){
     };
   });
 
-  $('.existing-tweet').find('.timestamp-footer img').hide();
   $('.error-message').hide();
   renderDatabase();
 
