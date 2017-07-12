@@ -139,14 +139,20 @@ $(document).ready(function(){
 
 //submit tweets to db
   $('.new-tweet').on('click', 'button', function () {
-    $.ajax({
-      url: '/tweets/',
-      type: 'POST',
-      data: $('.new-tweet').find('textarea').serialize(),
-      success: function (morePostsHtml) {
-      renderDatabase();
-      }
-    });
+    if ( $('.new-tweet span').hasClass('overflow') ){
+      console.log('Post is too long!');
+    } else if ( $('.new-tweet').find('textarea').val().length <= 0 ){
+      console.log('Cannot post an empty tweet');
+    } else {
+      $.ajax({
+        url: '/tweets/',
+        type: 'POST',
+        data: $('.new-tweet').find('textarea').serialize(),
+        success: function (morePostsHtml) {
+          renderDatabase();
+        }
+      });
+    }
   });
 
 
