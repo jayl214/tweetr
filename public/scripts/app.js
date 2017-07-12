@@ -85,7 +85,6 @@ $(document).ready(function(){
 
 
   function createTweetELement(userObj){
-
     $('.tweet-field').prepend(
 
       $('<section/>').addClass("existing-tweet")
@@ -122,7 +121,6 @@ $(document).ready(function(){
       method: 'GET',
       success: function (TTR) {
         renderTweets(TTR);
-        $('.existing-tweet').find('.timestamp-footer img').hide();
           $('.existing-tweet').on('mouseenter',function(){
             $(this).addClass("hover");
             $(this).find('.timestamp-footer img').show();
@@ -135,28 +133,31 @@ $(document).ready(function(){
     });
   };
 
-  renderDatabase();
+
 
 //submit tweets to db
   $('.new-tweet').on('click', 'button', function () {
-    if ( $('.new-tweet span').hasClass('overflow') ){
-      console.log('Post is too long!');
-    } else if ( $('.new-tweet').find('textarea').val().length <= 0 ){
-      console.log('Cannot post an empty tweet');
-    } else {
+    if ( $('.new-tweet').find('textarea').val().length <= 0 ){
+      $('.error-message').text('Tweet is not present!');
+      $('.error-message').show();
+    } else if( $('.new-tweet span').hasClass("overflow") ){
+      $('.error-message').text('Tweet is too long!');
+      $('.error-message').show();
+    }else {
+      $('.error-message').hide();
       $.ajax({
         url: '/tweets/',
         type: 'POST',
         data: $('.new-tweet').find('textarea').serialize(),
         success: function (morePostsHtml) {
-          renderDatabase();
+        renderDatabase();
         }
       });
-    }
+    };
   });
 
-
-
-
+  $('.existing-tweet').find('.timestamp-footer img').hide();
+  $('.error-message').hide();
+  renderDatabase();
 
 });

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/nav.css" />
     <link rel="stylesheet" type="text/css" href="/styles/new-tweet.css" />
     <link rel="stylesheet" type="text/css" href="/styles/existing-tweet.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/error-message.css" />
 
     <!-- Font roboto condensed -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i" rel="stylesheet">
@@ -31,6 +32,7 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      <span id = "#compose-button">Compose</span>
     </nav>
 
     <!-- Page-specific (main) content here -->
@@ -43,9 +45,12 @@
           <span class="counter">140</span>
 
       </section>
-      <!-- example existing tweet -->
-      <!-- <section class = tweet-field>
-        <section class = "existing-tweet">
+
+      <div class = "error-message"></div>
+
+      <section class = tweet-field>
+        <!-- existing tweet -->
+        <!-- <section class = "existing-tweet">
           <header class = "user-header" >
             <img src = "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png">
             <h2>Bill Fields</h2>
@@ -58,9 +63,9 @@
               <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png">
               <img src="https://image.freepik.com/free-icon/retweet_318-11148.jpg">
               <img src="http://simpleicon.com/wp-content/uploads/flag.png">
-          </footer>
+          </footer> -->
 
-        </section> -->
+        </section>
       </section>
     </main>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
