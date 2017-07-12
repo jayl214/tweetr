@@ -83,38 +83,28 @@ $(document).ready(function(){
     return diffDays;
   }
 
+
   function createTweetELement(userObj){
 
-    $('.container').append(
+    $('.tweet-field').prepend(
 
       $('<section/>').addClass("existing-tweet")
-        .append(
-          $('<header/>').addClass("user-header")
-          .append(
-            $('<img/>').attr("src", userObj.user.avatars.small)
-          )
-          .append(
-            $('<h2/>').text(userObj.user.name)
-          )
-          .append(
-            $('<span/>').text(userObj.user.handle)
-          )
+
+        .prepend($('<footer/>').addClass("timestamp-footer").text( dateDiff(userObj.created_at, new Date() ) + " days ago")
+          .append($('<img/>').attr("src", "https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png" ))
+          .append($('<img/>').attr("src", "https://image.freepik.com/free-icon/retweet_318-11148.jpg" ))
+          .append($('<img/>').attr("src", "http://simpleicon.com/wp-content/uploads/flag.png" ))
         )
-        .append(
-          $('<article/>').addClass("tweet").text(userObj.content.text)
+
+        .prepend($('<article/>').addClass("tweet").text(userObj.content.text))
+
+        .prepend($('<header/>').addClass("user-header")
+          .append($('<img/>').attr("src", userObj.user.avatars.small))
+          .append($('<h2/>').text(userObj.user.name))
+          .append($('<span/>').text(userObj.user.handle))
         )
-        .append(
-          $('<footer/>').addClass("timestamp-footer").text( dateDiff(userObj.created_at, new Date() ) + " days ago")
-            .append(
-              $('<img/>').attr("src", "https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png" )
-            )
-            .append(
-              $('<img/>').attr("src", "https://image.freepik.com/free-icon/retweet_318-11148.jpg" )
-            )
-            .append(
-              $('<img/>').attr("src", "http://simpleicon.com/wp-content/uploads/flag.png" )
-            )
-        )
+
+
     );
 
   };
@@ -125,22 +115,42 @@ $(document).ready(function(){
     };
   };
 
-  renderTweets(data);
+//get tweets from db and render
+  function renderDatabase(){
+    $.ajax({
+      url: '/tweets/',
+      method: 'GET',
+      success: function (TTR) {
+        renderTweets(TTR);
+        $('.existing-tweet').find('.timestamp-footer img').hide();
+          $('.existing-tweet').on('mouseenter',function(){
+            $(this).addClass("hover");
+            $(this).find('.timestamp-footer img').show();
+          });
+          $('.existing-tweet').on('mouseleave',function(){
+            $(this).removeClass("hover");
+            $(this).find('.timestamp-footer img').hide();
+          });
+      }
+    });
+  };
 
+  renderDatabase();
 
-  $(function() {
-    $('.new-tweet').on('click', 'button', function () {
-      console.log('tweet tweet!')
-      console.log($('.new-tweet').find('textarea').val());
-      $.ajax({
-        url: '/tweets/',
-        type: 'POST',
-        data: $('.new-tweet').find('textarea').serialize(),
-        success: function (morePostsHtml) {
-          console.log('success');
-
-        }
-      });
+//submit tweets to db
+  $('.new-tweet').on('click', 'button', function () {
+    $.ajax({
+      url: '/tweets/',
+      type: 'POST',
+      data: $('.new-tweet').find('textarea').serialize(),
+      success: function (morePostsHtml) {
+      renderDatabase();
+      }
     });
   });
+
+
+
+
+
 });
