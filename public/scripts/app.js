@@ -83,7 +83,7 @@ $(document).ready(function(){
     return diffDays;
   }
 
-
+//build structure of individual tweet
   function createTweetELement(userObj){
     $('.tweet-field').prepend(
 
@@ -134,6 +134,7 @@ $(document).ready(function(){
     });
   };
 
+//just render the newest tweet
   function renderLatestTweet(){
     $.ajax({
       url: '/tweets/',
