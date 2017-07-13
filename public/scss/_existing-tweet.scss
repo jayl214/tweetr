@@ -1,0 +1,86 @@
+/*Standard tweet*/
+.existing-tweet {
+  margin: 0 2em;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 15px;
+
+    .user-header{
+      height: 4em;
+      background-color: #f4f4f4;
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+        h2{
+          margin-top: .25em;
+          display: inline-block;
+          color: #777777;
+        }
+
+        span{
+          float: right;
+          display: inline-block;
+          color: #9b9b9b;
+          margin: .5em;
+        }
+
+        img{
+          border-radius: 10px;
+          margin: .5em .5em;
+          display: inline-block;
+          float: left;
+        }
+
+
+    }
+
+}
+
+
+
+
+
+
+.tweet {
+  margin: 2em .5em 2em .5em;
+}
+
+.timestamp-footer{
+  border-top: 1px solid #eee;
+  line-height: 2em;
+  font-size: .75em;
+  padding-left: .5em;
+
+    img{
+      height: 20px;
+      width: 25px;
+      float: right;
+      padding-top: 0.5em;
+      padding-right: 0.75em;
+    }
+
+}
+
+
+/*hover tweet*/
+
+.existing-tweet.hover {
+  border: 1px solid black;
+
+    .user-header{
+      background-color: #eee;
+
+        h2{
+          margin-top: .25em;
+          display: inline-block;
+          color: black;
+        }
+
+    }
+
+}
+
+
+

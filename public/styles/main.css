@@ -1,0 +1,147 @@
+.error-message {
+  background-color: #ff5e5e;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  margin: 15px 2em;
+  padding: 0.5em; }
+
+/*Standard tweet*/
+.existing-tweet {
+  margin: 0 2em;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 15px; }
+  .existing-tweet .user-header {
+    height: 4em;
+    background-color: #f4f4f4;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; }
+    .existing-tweet .user-header h2 {
+      margin-top: .25em;
+      display: inline-block;
+      color: #777777; }
+    .existing-tweet .user-header span {
+      float: right;
+      display: inline-block;
+      color: #9b9b9b;
+      margin: .5em; }
+    .existing-tweet .user-header img {
+      border-radius: 10px;
+      margin: .5em .5em;
+      display: inline-block;
+      float: left; }
+
+.tweet {
+  margin: 2em .5em 2em .5em; }
+
+.timestamp-footer {
+  border-top: 1px solid #eee;
+  line-height: 2em;
+  font-size: .75em;
+  padding-left: .5em; }
+  .timestamp-footer img {
+    height: 20px;
+    width: 25px;
+    float: right;
+    padding-top: 0.5em;
+    padding-right: 0.75em; }
+
+/*hover tweet*/
+.existing-tweet.hover {
+  border: 1px solid black; }
+  .existing-tweet.hover .user-header {
+    background-color: #eee; }
+    .existing-tweet.hover .user-header h2 {
+      margin-top: .25em;
+      display: inline-block;
+      color: black; }
+
+/*
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ * https://css-tricks.com/international-box-sizing-awareness-day/
+ * Do not modify these two selectors, please
+ */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/*
+ * Global layout stuff
+ */
+body {
+  margin: 0;
+  color: #244751;
+  background-color: #eee;
+  font-family: 'Roboto Condensed', sans-serif; }
+
+main {
+  margin: 0 auto;
+  padding-top: 140px;
+  width: 450px;
+  background-color: white; }
+
+/*
+ * Additional CSS can be defined below or in other CSS files, as per instructions
+ */
+#nav-bar {
+  z-index: 10;
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: #00a087;
+  color: #e8fdff;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0px;
+  padding-bottom: 0px; }
+  #nav-bar .logo {
+    width: 80px;
+    height: 80px;
+    float: left; }
+  #nav-bar .header {
+    padding-left: 10px;
+    float: left;
+    line-height: 80px;
+    font-size: 200%; }
+  #nav-bar .compose-toggle {
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #e7fdff;
+    padding: 1.25em .5em 1.25em .5em;
+    height: 60px;
+    float: right;
+    text-align: center;
+    color: #00a087; }
+  #nav-bar .compose-toggle.hover {
+    background-color: white;
+    color: black; }
+
+.new-tweet {
+  margin: 0 2em;
+  padding: 0 1em 1em 1em;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  background-color: #eee; }
+  .new-tweet h2 {
+    border-bottom: 1px solid black; }
+  .new-tweet textarea {
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px; }
+
+.counter {
+  float: right;
+  font-style: italic; }
+
+.overflow {
+  color: red; }
+
+/*# sourceMappingURL=main.css.map */
