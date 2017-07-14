@@ -1,8 +1,8 @@
 .error-message {
   background-color: #ff5e5e;
-  border: 1px solid black;
-  border-radius: 10px;
+  border: $darkBorder;
+  border-radius: $borderRadius;
   text-align: center;
-  margin: 15px 2em;
+  margin: $containerVerticalMargin $containerHorizontalMargin;
   padding: 0.5em;
 }

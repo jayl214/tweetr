@@ -7,10 +7,7 @@
   left: 0px;
   background-color: #00a087;
   color: #e8fdff;
-  padding-left: 2em;
-  padding-right: 2em;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding: 0px $containerHorizontalMargin 0px $containerHorizontalMargin;
 
     .logo{
       width: 80px;
@@ -28,8 +25,8 @@
 
     .compose-toggle{
       margin-top: 10px;
-      border: 1px solid black;
-      border-radius: 10px;
+      border: $darkBorder;
+      border-radius: $borderRadius;
       background-color: #e7fdff;
       padding: 1.25em .5em 1.25em .5em;
       height: 60px;
@@ -38,7 +35,7 @@
       color: #00a087;
     }
 
-    .compose-toggle.hover{
+    .compose-toggle:hover{
       background-color: white;
       color: black;
     }

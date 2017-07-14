@@ -4,31 +4,46 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-//create element example
-
-// $('#box').append(
-//   $('<div/>')
-//     .attr("id", "newDiv1")
-//     .addClass("newDiv purple bloated")
-//     .append("<span/>")
-//       .text("hello world")
-// );
 
 $(document).ready(function(){
 
-  function dateDiff(date1, date2){
-    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24));
-    return diffDays;
-  }
+
+  function timeSince(date) {
+
+    let seconds = Math.floor((new Date() - date) / 1000);
+
+    let interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+      return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+      return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+      return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+      return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+      return interval + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
+  };
 
 //build structure of individual tweet
   function createTweetELement(userObj){
     $('.tweet-field').prepend(
 
-      $('<section/>').addClass("existing-tweet")
+      $('<section/>').addClass("existing-tweet").data("tweet_ID", userObj._id)
 
-        .prepend($('<footer/>').addClass("timestamp-footer").text( dateDiff(userObj.created_at, new Date() ) + " days ago")
-          .append($('<img/>').attr("src", "https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png" ))
+        .prepend($('<footer/>').addClass("timestamp-footer").text(timeSince(userObj.created_at))
+          .append($('<img/>').attr("src", "https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png" ).addClass("like"))
           .append($('<img/>').attr("src", "https://image.freepik.com/free-icon/retweet_318-11148.jpg" ))
           .append($('<img/>').attr("src", "http://simpleicon.com/wp-content/uploads/flag.png" ))
         )
@@ -60,14 +75,12 @@ $(document).ready(function(){
       success: function (database) {
         buildAllTweets(database);
         $('.existing-tweet').find('.timestamp-footer img').hide();
-          $('.existing-tweet').on('mouseenter',function(){
-            $(this).addClass("hover");
-            $(this).find('.timestamp-footer img').show();
-          });
-          $('.existing-tweet').on('mouseleave',function(){
-            $(this).removeClass("hover");
-            $(this).find('.timestamp-footer img').hide();
-          });
+        $('.existing-tweet').on('mouseenter',function(){
+          $(this).find('.timestamp-footer img').show();
+        });
+        $('.existing-tweet').on('mouseleave',function(){
+          $(this).find('.timestamp-footer img').hide();
+        });
       }
     });
   };
@@ -80,14 +93,12 @@ $(document).ready(function(){
       success: function (database) {
         createTweetELement(database[database.length-1]);
         $('.existing-tweet').find('.timestamp-footer img').hide();
-          $('.existing-tweet').on('mouseenter',function(){
-            $(this).addClass("hover");
-            $(this).find('.timestamp-footer img').show();
-          });
-          $('.existing-tweet').on('mouseleave',function(){
-            $(this).removeClass("hover");
-            $(this).find('.timestamp-footer img').hide();
-          });
+        $('.existing-tweet').on('mouseenter',function(){
+          $(this).find('.timestamp-footer img').show();
+        });
+        $('.existing-tweet').on('mouseleave',function(){
+          $(this).find('.timestamp-footer img').hide();
+        });
       }
     });
   };
@@ -107,11 +118,23 @@ $(document).ready(function(){
         url: '/tweets/',
         type: 'POST',
         data: $('.new-tweet').find('textarea').serialize(),
-        success: function (morePostsHtml) {
+        success: function () {
         renderLatestTweet();
         }
       });
     };
+  });
+
+  $('.existing-tweet .timestamp-footer .like').on('click', function(){
+    let id = $('.existing-tweet').data("tweet_ID")
+    console.log(id);
+    $.ajax({
+        url: `/tweets/${id}`,
+        type: 'POST',
+        success: function () {
+          $('.existing-tweet .timestamp-footer .like').toggle();
+        }
+      });
   });
 
   $('.error-message').hide();

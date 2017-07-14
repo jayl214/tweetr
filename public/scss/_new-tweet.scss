@@ -1,14 +1,14 @@
-
+//new tweet composer
 .new-tweet {
-  margin: 0 2em;
+  margin: 0 $containerHorizontalMargin;
   padding: 0 1em 1em 1em;
-  border: 1px solid #cecece;
-  border-radius: 10px;
+  border: 1px solid $containerBorderColor;
+  border-radius: $borderRadius;
   background-color: #eee;
 
 
     h2{
-      border-bottom: 1px solid black;
+      border-bottom: $darkBorder;
     }
 
     textarea{
