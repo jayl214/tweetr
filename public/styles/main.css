@@ -62,6 +62,9 @@
   .existing-tweet:hover .timestamp-footer:hover {
     border-top: 1px solid black; }
 
+.liked {
+  border: 1px solid red; }
+
 /*
  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  * https://css-tricks.com/international-box-sizing-awareness-day/

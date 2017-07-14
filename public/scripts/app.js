@@ -40,10 +40,10 @@ $(document).ready(function(){
   function createTweetELement(userObj){
     $('.tweet-field').prepend(
 
-      $('<section/>').addClass("existing-tweet").data("tweet_ID", userObj._id)
+      $('<section/>').addClass("existing-tweet")
 
         .prepend($('<footer/>').addClass("timestamp-footer").text(timeSince(userObj.created_at))
-          .append($('<img/>').attr("src", "https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png" ).addClass("like"))
+          .append($('<img/>').attr("src", "https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png" ).addClass("like").data("tweet_ID", userObj._id))
           .append($('<img/>').attr("src", "https://image.freepik.com/free-icon/retweet_318-11148.jpg" ))
           .append($('<img/>').attr("src", "http://simpleicon.com/wp-content/uploads/flag.png" ))
         )
@@ -125,15 +125,16 @@ $(document).ready(function(){
     };
   });
 
-  debugger;
+
   $('.tweet-field').on('click', '.like', function () {
-    let id = $('.existing-tweet').data("tweet_ID")
+    let id = $( event.target ).data("tweet_ID");
     console.log(id);
     $.ajax({
         url: `/tweets/${id}`,
         type: 'POST',
         success: function () {
-          console.log('huzzah');
+          $('*[data-tweet_ID="5968d713c2591a60503d89c6"]').toggleClass('liked');
+          console.log(`${id}`);
         }
       });
   });
