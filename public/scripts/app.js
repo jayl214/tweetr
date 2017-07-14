@@ -125,14 +125,15 @@ $(document).ready(function(){
     };
   });
 
-  $('.existing-tweet .timestamp-footer .like').on('click', function(){
+  debugger;
+  $('.tweet-field').on('click', '.like', function () {
     let id = $('.existing-tweet').data("tweet_ID")
     console.log(id);
     $.ajax({
         url: `/tweets/${id}`,
         type: 'POST',
         success: function () {
-          $('.existing-tweet .timestamp-footer .like').toggle();
+          console.log('huzzah');
         }
       });
   });
