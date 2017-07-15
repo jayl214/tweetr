@@ -19,3 +19,4 @@ Tweeter is a simple, single-page Twitter clone.
 - mongodb
 
 ## Screenshots
+!["Home Page"](https://github.com/jayl214/tweetr/blob/master/Docs/Tweetr%20main%20page.png)
