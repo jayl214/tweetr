@@ -39,6 +39,25 @@ module.exports = function makeDataHelpers(db) {
 
     },
 
+    getLikeCounter: function(id, callback){
+      db.collection("tweets").find({_id:ObjectId(id)}).toArray((err, tweet) => {
+        if (err) {
+          return callback(err);
+        };
+
+        callback(null, tweet);
+      });
+
+    },
+
+
+    //   db.collection("tweets").findOne(
+    //     {_id: ObjectId(id)},
+    //     {like_counter: 1, _id: 0}, function(err, tweetLikeCounter){
+    //       callback(null, tweetLikeCounter)
+    //       });
+    // },
+
     updateLikeCounter: function(id, callback){
       db.collection("tweets").findOne(
         {_id: ObjectId(id)},

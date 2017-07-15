@@ -129,12 +129,21 @@ $(document).ready(function(){
   $('.tweet-field').on('click', '.like', function () {
     let id = $( event.target ).data("tweet_ID").toString();
     console.log(id);
-    $(event.target).toggleClass('liked');
+    // $(event.target).toggleClass('liked');
     $.ajax({
         url: `/tweets/${id}`,
         type: 'POST',
-
       });
+
+    $.ajax({
+      url: `/tweets/${id}`,
+      method: 'GET',
+      success: function (userObj) {
+        let objOfUser = JSON.stringify(userObj);
+        console.log(typeof userObj);
+        console.log(userObj[0].like_counter);
+      }
+    });
   });
 
   $('.error-message').hide();

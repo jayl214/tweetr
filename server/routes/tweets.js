@@ -54,6 +54,29 @@ module.exports = function(DataHelpers) {
 
   });
 
+
+  // tweetsRoutes.get("/", function(req, res) {
+  //   DataHelpers.getTweets((err, tweets) => {
+  //     if (err) {
+  //       res.status(500).json({ error: err.message });
+  //     } else {
+  //       res.json(tweets);
+  //     }
+  //   });
+
+  tweetsRoutes.get("/:id", function(req, res){
+
+      DataHelpers.getLikeCounter(req.params.id, function(err, tweet){
+        if(err) {
+          res.status(500).json({ error: err.message });
+          } else {
+            res.json(tweet);
+          }
+        });
+
+
+  });
+
   return tweetsRoutes;
 
 }
