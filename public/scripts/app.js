@@ -127,15 +127,13 @@ $(document).ready(function(){
 
 
   $('.tweet-field').on('click', '.like', function () {
-    let id = $( event.target ).data("tweet_ID");
+    let id = $( event.target ).data("tweet_ID").toString();
     console.log(id);
+    $(event.target).toggleClass('liked');
     $.ajax({
         url: `/tweets/${id}`,
         type: 'POST',
-        success: function () {
-          $('*[data-tweet_ID="5968d713c2591a60503d89c6"]').toggleClass('liked');
-          console.log(`${id}`);
-        }
+
       });
   });
 
